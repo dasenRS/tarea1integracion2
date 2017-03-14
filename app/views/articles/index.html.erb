@@ -13,14 +13,18 @@
   </thead>
 
   <tbody>
+  <%i= -1%>
     <% @articles.each do |article| %>
       <tr>
+      <%i += 1%>
         <td><%= article.title %></td>
         <td><%= article.header %></td>
         <td><%= article.body %></td>
-        <td><%= link_to 'Show', article %></td>
-        <td><%= link_to 'Edit', edit_article_path(article) %></td>
-        <td><%= link_to 'Destroy', article, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= article.created_at %></td>
+        <td><%= @commentscount[i] %></td>
+        <td><%= link_to 'Noticia completa', article %></td>
+        <td><%= link_to 'Editar', edit_article_path(article) %></td>
+        <td><%= link_to 'Eliminar', article, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

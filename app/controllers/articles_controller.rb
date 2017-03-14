@@ -4,12 +4,20 @@ class ArticlesController < ApplicationController
   # GET /articles
   # GET /articles.json
   def index
-    @articles = Article.all
+    @articles = Article.all.reverse
+    ccount = Array.new()
+    c = 0
+    Article.all.reverse.each do |art|
+      c = Comment.where(article_id: art.id).count
+      ccount << c        
+    @commentscount = ccount
+  end
   end
 
   # GET /articles/1
   # GET /articles/1.json
   def show
+    @comments = Comment.where(article_id: @article.id)
   end
 
   # GET /articles/new
